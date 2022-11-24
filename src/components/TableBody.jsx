@@ -8,7 +8,7 @@ function TableBody() {
         <tbody>
             {data?.map(e => (
                  <tr key = {e.id}>
-                    <td><input type='checkbox' onChange={()=> {}} checked={e.check}/></td>
+                    <td><input type='checkbox' onChange={e => {}} checked={e.check}/></td>
                     <td>{e.name}</td>
                     <td>{e.age}</td>
                     <td>{e.city}</td>
