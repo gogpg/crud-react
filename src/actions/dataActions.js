@@ -1,5 +1,5 @@
 
-import {addNewEmployee_const, checkAll_const, loadData_const, sortEmploeesByAge_const} from "../constants/dataConstants";
+import {addNewEmployee_const, checkAll_const, checkEmplyee_const, loadData_const, sortEmploeesByAge_const} from "../constants/dataConstants";
  
 export function addNewEmployee_action(newData){
     return {
@@ -25,4 +25,12 @@ export function checkAll_action(isCheck) {
         type: checkAll_const,
         payload: isCheck
     }
-}
+} 
+
+export function checkEmplyee_action(id, isCheck) {
+    return{
+        type: checkEmplyee_const,
+        payload: {id, isCheck}
+        
+    }
+} 

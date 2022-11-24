@@ -13,7 +13,13 @@ function TableHead() {
     }
 
     useEffect(() => {
-        dispachData(checkAll_action(isCheck))
+        if(data) {
+            const checkData = [...data].filter(e => !e.deleted);
+            if(data.length && !checkData.some(e => !e.checked)){
+                setIsCheck(true);
+            }
+        }
+        
     },[data])
 
     return (
