@@ -5,7 +5,7 @@ import DataContext from "./DataContext";
 
 function NewData() {
 
-    const {dispachData} = useContext(DataContext)
+    const { dispachData } = useContext(DataContext)
 
     const nameRef = useRef();
     const ageRef = useRef();
@@ -21,17 +21,17 @@ function NewData() {
             deleted: false,
             focus: false,
             check: false
-    }))
+        }))
         nameRef.current.value = "";
         ageRef.current.value = "";
         selectRef.current.value = "";
     }
 
-    return(
+    return (
         <div>
-        
-            <input ref={nameRef} placeholder="name" type="text"/>
-            <input ref={ageRef} placeholder="age" type="number"/>
+
+            <input ref={nameRef} placeholder="Name" type="text" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
+            <input ref={ageRef} placeholder="Age" type="number" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
 
             <select ref={selectRef}>
                 <option value="">Choose city</option>
@@ -41,7 +41,7 @@ function NewData() {
             </select>
 
             <button onClick={addNewEmployee}>Add employee</button>
-            
+
         </div>
     )
 }
