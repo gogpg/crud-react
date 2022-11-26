@@ -5,7 +5,6 @@ function TableHead() {
 
     const { dispachData, data, isCheck, setIsCheck } = useContext(DataContext)
 
-
     const check = e => {
         const c = e.target.checked;
         setIsCheck(c);

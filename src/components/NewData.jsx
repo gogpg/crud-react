@@ -13,18 +13,24 @@ function NewData() {
 
     const addNewEmployee = () => {
 
-        dispachData(addNewEmployee_action({
-            id: getId(),
-            name: nameRef.current.value,
-            age: ageRef.current.value,
-            city: selectRef.current.value,
-            deleted: false,
-            focus: false,
-            check: false
-        }))
-        nameRef.current.value = "";
-        ageRef.current.value = "";
-        selectRef.current.value = "";
+        let name = nameRef.current.value;
+        let age = ageRef.current.value;
+        let city = selectRef.current.value;
+
+        if (name && age && city) {
+            dispachData(addNewEmployee_action({
+                id: getId(),
+                name: name[0].toUpperCase() + name.slice(1),
+                age,
+                city,
+                deleted: false,
+                focus: false,
+                check: false
+            }))
+            name = "";
+            age = "";
+            city = "";
+        }
     }
 
     return (
