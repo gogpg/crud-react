@@ -27,9 +27,9 @@ function NewData() {
                 focus: false,
                 check: false
             }))
-            name = "";
-            age = "";
-            city = "";
+            nameRef.current.value = "";
+            ageRef.current.value = "";
+            selectRef.current.value = "";
         }
     }
 
