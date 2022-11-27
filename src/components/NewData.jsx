@@ -34,10 +34,9 @@ function NewData() {
     }
 
     return (
-        <div>
-
-            <input ref={nameRef} placeholder="Name" type="text" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
-            <input ref={ageRef} placeholder="Age" type="number" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
+        <div className="inputs">
+            <input className="name" ref={nameRef} placeholder="Name:" type="text" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
+            <input className="age" ref={ageRef} placeholder="Age:" type="number" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
 
             <select ref={selectRef}>
                 <option value="">Choose city</option>

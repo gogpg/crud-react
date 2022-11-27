@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { checkAll_action } from "../actions/dataActions";
+import { checkAll_action, deleteAllSelectedEmployees_action } from "../actions/dataActions";
 import DataContext from "./DataContext";
 function TableHead() {
 
@@ -29,6 +29,7 @@ function TableHead() {
                 <th>Name</th>
                 <th>Age</th>
                 <th>City</th>
+                <th><button onClick={() => dispachData(deleteAllSelectedEmployees_action())}>Delete all selected</button></th>
             </tr>
         </thead>
 

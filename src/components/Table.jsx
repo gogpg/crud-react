@@ -3,10 +3,12 @@ import TableHead from "./TableHead";
 
 function Table() {
     return (
-        <table>
-            <TableHead/>
-            <TableBody/>
-        </table>
+        <div className="table-place">
+            <table>
+                <TableHead />
+                <TableBody />
+            </table>
+        </div>
     )
 }
 

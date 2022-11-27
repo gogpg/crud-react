@@ -1,5 +1,6 @@
 
-import { addNewEmployee_const, checkAll_const, checkEmplyee_const, loadData_const, sortEmploeesByAge_const } from "../constants/dataConstants";
+
+import { addNewEmployee_const, checkAll_const, checkEmplyee_const, deleteAllSelectedEmployees_const, loadData_const, sortEmploeesByAge_const } from "../constants/dataConstants";
 
 function data_reducer(state, action) {
 
@@ -26,6 +27,10 @@ function data_reducer(state, action) {
 
         case checkEmplyee_const:
             newState = newState?.map(e => e.id === action.payload.id ? { ...e, check: action.payload.isCheck } : { ...e });
+            break;
+
+        case deleteAllSelectedEmployees_const:
+            newState = newState?.map(e => e.check ? { ...e, deteted: true, check: false } : { ...e });
             break;
 
         default:

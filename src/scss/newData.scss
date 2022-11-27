@@ -1,0 +1,32 @@
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // width: 90%;
+
+    input {
+        width: calc(100% - 10px);
+        padding: 5px 5px;
+        border-style: none;
+        margin-bottom: 5px;
+        border-bottom: solid black 1px;
+        outline: none;
+
+        &::placeholder {
+            color: black;
+        }
+
+    }
+
+    select {
+        width: 100%;
+        border-style: none;
+        border-bottom: solid black 1px;
+        padding: 4px 0;
+        margin-bottom: 20px;
+        outline: none;
+    }
+}
+
