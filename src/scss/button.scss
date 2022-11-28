@@ -9,11 +9,13 @@ background-color: rgb(116, 152, 120);
   padding: 5px 10px;
   text-align: center;
   transition: 200ms;
-  width: 100%;
+  // width: 100%;
   box-sizing: border-box;
   border: 0;
   user-select: none;
   touch-action: manipulation;
+  display: inline-block;
+  margin: 4px;
 }
 
 button:not(:disabled):hover,

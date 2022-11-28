@@ -18,19 +18,21 @@ function App() {
 
   return (
     <div className='body'>
+
       <div className='title-place'>
         <h1>Employees Table</h1>
       </div>
+
       <DataContext.Provider value={{
         data,
         dispachData,
         isCheck,
         setIsCheck
       }}>
-
         <NewData />
         <Table />
       </DataContext.Provider>
+
     </div>
   )
 }

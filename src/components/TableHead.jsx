@@ -13,8 +13,10 @@ function TableHead() {
     useEffect(() => {
         if (data) {
             const checkData = [...data].filter(e => !e.deleted);
-            if (data.length && !checkData.some(e => !e.check)) {
-                setIsCheck(true);
+            if (checkData.length) {
+                if (!checkData.some(e => !e.check)) {
+                    setIsCheck(true)
+                }
             } else {
                 setIsCheck(false)
             }
