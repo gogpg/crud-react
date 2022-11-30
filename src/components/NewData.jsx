@@ -18,15 +18,16 @@ function NewData() {
         let city = selectRef.current.value;
 
         if (name && age && city) {
-            dispachData(addNewEmployee_action({
-                id: getId(),
-                name: name[0].toUpperCase() + name.slice(1).toLowerCase(),
-                age,
-                city,
-                deleted: false,
-                focus: false,
-                check: false
-            }))
+            dispachData(
+                addNewEmployee_action({
+                    id: getId(),
+                    name: name[0].toUpperCase() + name.slice(1).toLowerCase(),
+                    age,
+                    city,
+                    deleted: false,
+                    focus: false,
+                    check: false
+                }))
             nameRef.current.value = "";
             ageRef.current.value = "";
             selectRef.current.value = "";
