@@ -4,7 +4,7 @@ import DataContext from "./DataContext";
 
 function TableBody() {
 
-    const { data, dispachData, setIsCheck } = useContext(DataContext)
+    const { data, dispachData, setIsCheck, pagesList, page } = useContext(DataContext)   // is data context
 
 
     const check = (id, e) => {
@@ -78,20 +78,17 @@ function TableBody() {
         notDeletedData = [...data].filter(e => !e.deleted)  //visi kurie neistrinti
     }
 
-    let newData = [[]];
-
     while (notDeletedData.length > 0) {
-        if (newData[newData.length - 1].length < 3) {
-            newData[newData.length - 1].push(notDeletedData.shift());    ///shift pasiima pirma elementa ir ji pasalina is pries tai buvusio masyvo
+        if (pagesList[pagesList.length - 1].length < 3) {
+            pagesList[pagesList.length - 1].push(notDeletedData.shift());    ///shift pasiima pirma elementa ir ji pasalina is pries tai buvusio masyvo
         } else {
-            newData.push([notDeletedData.shift()]);
+            pagesList.push([notDeletedData.shift()]);
         }
-
     }
 
     return (
         <tbody>
-            {newData[0].map(e => e.focus ? focusEmployee(e) : blurEmployee(e))}
+            {pagesList[page - 1]?.map(e => e.focus ? focusEmployee(e) : blurEmployee(e))}
         </tbody>
     )
 }
