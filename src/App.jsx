@@ -6,13 +6,15 @@ import NewData from './components/NewData';
 import Table from './components/Table';
 import TablePagesList from './components/TablePagesList';
 import data_reducer from './reducers/dataReducer';
+import pagesList_reducer from './reducers/pagesListReducer';
 
 
 function App() {
   const [data, dispachData] = useReducer(data_reducer, null)
+  const [pagesList, dispachPagesList] = useReducer(pagesList_reducer, [[]])  //default one empty page
 
   const [isCheck, setIsCheck] = useState(false)
-  let pagesList = [[]];
+
   const [page, setPage] = useState(1)
 
   useEffect(() => {
@@ -33,7 +35,8 @@ function App() {
         setIsCheck,
         pagesList,
         page,
-        setPage
+        setPage,
+        dispachPagesList
       }}>
         <NewData />
         <Table />

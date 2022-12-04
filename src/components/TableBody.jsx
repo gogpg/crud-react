@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { cancelEdit_action, checkEmplyee_action, deleteEmployee_action, focusEmployee_action, saveEdit_action } from "../actions/dataActions";
+import { createPagesInLIst_action } from "../actions/pagesListActions";
 import DataContext from "./DataContext";
 
 function TableBody() {
 
-    const { data, dispachData, setIsCheck, pagesList, page } = useContext(DataContext)   // is data context
+    const { data, dispachData, setIsCheck, pagesList, page, dispachPagesList } = useContext(DataContext)   // is data context
 
+    useEffect(() => {
+        dispachPagesList(createPagesInLIst_action(data))
+    }, [data, dispachPagesList])
 
     const check = (id, e) => {
         const c = e.target.checked;
@@ -19,6 +23,8 @@ function TableBody() {
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
     const [city, setCity] = useState('');
+
+
 
     useEffect(() => {
         if (data?.some(e => e.focus)) {
@@ -68,22 +74,6 @@ function TableBody() {
 
             </tr>
         )
-    }
-
-    //////////////////////// pusplapiavimas/////////////
-    ///nustatome, kiek rodoma irasu puslapyje
-    let notDeletedData = [];
-
-    if (data) {
-        notDeletedData = [...data].filter(e => !e.deleted)  //visi kurie neistrinti
-    }
-
-    while (notDeletedData.length > 0) {
-        if (pagesList[pagesList.length - 1].length < 3) {
-            pagesList[pagesList.length - 1].push(notDeletedData.shift());    ///shift pasiima pirma elementa ir ji pasalina is pries tai buvusio masyvo
-        } else {
-            pagesList.push([notDeletedData.shift()]);
-        }
     }
 
     return (
