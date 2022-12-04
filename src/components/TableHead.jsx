@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react";
-import { checkAll_action, deleteAllSelectedEmployees_action } from "../actions/dataActions";
+import { deleteAllSelectedEmployees_action } from "../actions/dataActions";
+import { checkAll_action } from "../actions/pagesListActions";
 import DataContext from "./DataContext";
 function TableHead() {
 
-    const { dispachData, data, isCheck, setIsCheck } = useContext(DataContext)
+    const { dispachData, isCheck, setIsCheck, dispachPagesList, page, pagesList } = useContext(DataContext)
 
     const check = e => {
         const c = e.target.checked;
@@ -11,23 +12,18 @@ function TableHead() {
     }
 
     useEffect(() => {
-        if (data) {
-            const checkData = [...data].filter(e => !e.deleted);
-            if (checkData.length) {
-                if (!checkData.some(e => !e.check)) {
-                    setIsCheck(true)
-                }
-            } else {
-                setIsCheck(false)
-            }
+        if (pagesList[page - 1].some(e => !e.check)) {  //jei bent vienas nepazymetas
+            setIsCheck(false)             ///virsutinis checkbox turi buti nepazymetas
+        } else if (pagesList[page - 1].every(e => e.check)) {
+            setIsCheck(true)
         }
 
-    }, [data, setIsCheck])
+    }, [isCheck, page, pagesList, setIsCheck])
 
     return (
         <thead>
             <tr>
-                <th><input type="checkbox" onChange={e => { check(e); dispachData(checkAll_action(e.target.checked)); }} checked={isCheck} ></input></th>
+                <th><input type="checkbox" onChange={e => { check(e); dispachPagesList(checkAll_action(page, e.target.checked)); }} checked={isCheck} ></input></th>
                 <th>Name</th>
                 <th>Age</th>
                 <th>City</th>

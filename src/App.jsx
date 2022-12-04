@@ -19,6 +19,7 @@ function App() {
 
   useEffect(() => {
     dispachData(loadData_action())
+
   }, [])
 
   return (
