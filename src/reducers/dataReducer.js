@@ -1,6 +1,6 @@
 
 
-import { addNewEmployee_const, cancelEdit_const, checkEmplyee_const, deleteAllSelectedEmployees_const, deleteEmployee_const, focusEmployee_const, loadData_const, saveEdit_const } from "../constants/dataConstants";
+import { addNewEmployee_const, cancelEdit_const, deleteAllSelectedEmployees_const, deleteEmployee_const, loadData_const, saveEdit_const } from "../constants/dataConstants";
 import updateData from "../functions/updateDataInLocalStorage";
 
 function data_reducer(state, action) {
@@ -18,10 +18,6 @@ function data_reducer(state, action) {
             newState = JSON.parse(localStorage.getItem('data')) || []
             break;
 
-        case checkEmplyee_const:
-            newState = newState?.map(e => e.id === action.payload.id ? { ...e, check: action.payload.isCheck } : { ...e });
-            break;
-
         case deleteAllSelectedEmployees_const:
             newState = newState?.map(e => e.check ? { ...e, deleted: true, check: false, focus: false } : { ...e, focus: false });
             updateData(newState);
@@ -33,9 +29,7 @@ function data_reducer(state, action) {
             updateData(newState)
             break;
 
-        case focusEmployee_const:
-            newState = newState?.map(e => e.id === action.payload ? { ...e, focus: true } : { ...e, focus: false });
-            break;
+
 
         case cancelEdit_const:
             newState = newState?.map(e => ({ ...e, focus: false }));

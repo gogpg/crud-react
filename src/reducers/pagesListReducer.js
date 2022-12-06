@@ -1,4 +1,4 @@
-import { checkAll_const, createPagesInLIst_const } from "../constants/pagesListConstants";
+import { checkAll_const, checkEmplyee_const, createPagesInLIst_const, focusEmployee_const } from "../constants/pagesListConstants";
 
 function pagesList_reducer(state, action) {   //puslapiavimas
 
@@ -23,7 +23,18 @@ function pagesList_reducer(state, action) {   //puslapiavimas
             break;
 
         case checkAll_const:
-            newState[action.payload.page - 1] = newState[action.payload.page - 1]?.map(e => ({ ...e, check: action.payload.isCheck }))   //page default yra 1 , prasideda masyve nuo 0, todel rasome page-1
+            newState[action.payload.page - 1] = newState[action.payload.page - 1]
+                ?.map(e => ({ ...e, check: action.payload.isCheck }))   //page default yra 1 , prasideda masyve nuo 0, todel rasome page-1
+            break;
+
+        case checkEmplyee_const:
+            newState[action.payload.page - 1] = newState[action.payload.page - 1]
+                ?.map(e => e.id === action.payload.id ? { ...e, check: action.payload.isCheck } : { ...e });
+            break;
+
+        case focusEmployee_const:
+            newState[action.payload.page - 1] = newState[action.payload.page - 1]
+                ?.map(e => e.id === action.payload.id ? { ...e, focus: true } : { ...e, focus: false });
             break;
 
         default:

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { cancelEdit_action, checkEmplyee_action, deleteEmployee_action, focusEmployee_action, saveEdit_action } from "../actions/dataActions";
-import { createPagesInLIst_action } from "../actions/pagesListActions";
+import { cancelEdit_action, deleteEmployee_action, saveEdit_action } from "../actions/dataActions";
+import { checkEmplyee_action, createPagesInLIst_action, focusEmployee_action } from "../actions/pagesListActions";
 import DataContext from "./DataContext";
 
 function TableBody() {
@@ -13,7 +13,7 @@ function TableBody() {
 
     const check = (id, e) => {
         const c = e.target.checked;
-        dispachData(checkEmplyee_action(id, c))
+        dispachPagesList(checkEmplyee_action(id, page, c))
 
         if (!c) {
             setIsCheck(c)
@@ -24,17 +24,15 @@ function TableBody() {
     const [age, setAge] = useState('');
     const [city, setCity] = useState('');
 
-
-
     useEffect(() => {
-        if (data?.some(e => e.focus)) {
-            const focusEmployee = [...data].filter(e => e.focus)[0];
+        if (pagesList[page - 1]?.some(e => e.focus)) {
+            const focusEmployee = [...pagesList[page - 1]].filter(e => e.focus)[0];
             setName(focusEmployee.name);
             setAge(focusEmployee.age);
             setCity(focusEmployee.city);
         }
 
-    }, [data])
+    }, [page, pagesList])
 
     function focusEmployee(e) {
 
@@ -69,7 +67,7 @@ function TableBody() {
                 <td>{e.city}</td>
                 <td>
                     <button onClick={() => dispachData(deleteEmployee_action(e.id))}>Delete</button>
-                    <button onClick={() => dispachData(focusEmployee_action(e.id))}>Edit</button>
+                    <button onClick={() => dispachPagesList(focusEmployee_action(e.id, page))}>Edit</button>
                 </td>
 
             </tr>

@@ -1,5 +1,5 @@
 
-import { addNewEmployee_const, cancelEdit_const, checkAll_const, checkEmplyee_const, deleteAllSelectedEmployees_const, deleteEmployee_const, focusEmployee_const, loadData_const, saveEdit_const } from "../constants/dataConstants";
+import { addNewEmployee_const, cancelEdit_const, deleteAllSelectedEmployees_const, deleteEmployee_const, focusEmployee_const, loadData_const, saveEdit_const } from "../constants/dataConstants";
 
 export function addNewEmployee_action(newData) {
     return {
@@ -11,16 +11,6 @@ export function addNewEmployee_action(newData) {
 export function loadData_action() {
     return {
         type: loadData_const
-    }
-}
-
-
-
-export function checkEmplyee_action(id, isCheck) {
-    return {
-        type: checkEmplyee_const,
-        payload: { id, isCheck }
-
     }
 }
 
@@ -38,12 +28,7 @@ export function deleteEmployee_action(id) {
 
 }
 
-export function focusEmployee_action(id) {
-    return {
-        type: focusEmployee_const,
-        payload: id
-    }
-}
+
 
 export function cancelEdit_action() {
     return {
