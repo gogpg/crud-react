@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { deleteAllSelectedEmployees_action } from "../actions/dataActions";
 import { checkAll_action } from "../actions/pagesListActions";
 import DataContext from "./DataContext";
+
 function TableHead() {
 
     const { dispachData, isCheck, setIsCheck, dispachPagesList, page, pagesList } = useContext(DataContext)
