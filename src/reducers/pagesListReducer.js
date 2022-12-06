@@ -1,4 +1,4 @@
-import { checkAll_const, checkEmplyee_const, createPagesInLIst_const, focusEmployee_const } from "../constants/pagesListConstants";
+import { cancelEdit_const, checkAll_const, checkEmplyee_const, createPagesInLIst_const, focusEmployee_const } from "../constants/pagesListConstants";
 
 function pagesList_reducer(state, action) {   //puslapiavimas
 
@@ -35,6 +35,11 @@ function pagesList_reducer(state, action) {   //puslapiavimas
         case focusEmployee_const:
             newState[action.payload.page - 1] = newState[action.payload.page - 1]
                 ?.map(e => e.id === action.payload.id ? { ...e, focus: true } : { ...e, focus: false });
+            break;
+
+        case cancelEdit_const:
+            newState[action.payload - 1] = newState[action.payload - 1]
+                ?.map(e => ({ ...e, focus: false }));
             break;
 
         default:

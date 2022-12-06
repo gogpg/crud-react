@@ -1,6 +1,6 @@
 
 
-import { addNewEmployee_const, cancelEdit_const, deleteAllSelectedEmployees_const, deleteEmployee_const, loadData_const, saveEdit_const } from "../constants/dataConstants";
+import { addNewEmployee_const, deleteAllSelectedEmployees_const, deleteEmployee_const, loadData_const, saveEdit_const } from "../constants/dataConstants";
 import updateData from "../functions/updateDataInLocalStorage";
 
 function data_reducer(state, action) {
@@ -27,12 +27,6 @@ function data_reducer(state, action) {
             newState = newState?.map(e => ({ ...e, check: false, focus: false }));  //atzymime visus pries tai pazymetus. pries trinant viena employee.
             newState = newState?.map(e => e.id === action.payload ? { ...e, deleted: true } : { ...e });
             updateData(newState)
-            break;
-
-
-
-        case cancelEdit_const:
-            newState = newState?.map(e => ({ ...e, focus: false }));
             break;
 
         case saveEdit_const:

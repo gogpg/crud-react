@@ -1,4 +1,4 @@
-import { checkAll_const, checkEmplyee_const, createPagesInLIst_const, focusEmployee_const } from "../constants/pagesListConstants";
+import { cancelEdit_const, checkAll_const, checkEmplyee_const, createPagesInLIst_const, focusEmployee_const } from "../constants/pagesListConstants";
 
 export function createPagesInLIst_action(data) {
     return {
@@ -26,5 +26,12 @@ export function focusEmployee_action(id, page) {
     return {
         type: focusEmployee_const,
         payload: { id, page }
+    }
+}
+
+export function cancelEdit_action(page) {
+    return {
+        type: cancelEdit_const,
+        payload: page
     }
 }
