@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useContext, useRef } from "react";
 import { addNewEmployee_action } from "../actions/dataActions";
 import getId from "../functions/getId";
@@ -10,6 +11,7 @@ function NewData() {
     const nameRef = useRef();
     const ageRef = useRef();
     const selectRef = useRef();
+    const [alert, setAlert] = useState(false)
 
     const addNewEmployee = () => {
 
@@ -28,27 +30,32 @@ function NewData() {
                     focus: false,
                     check: false
                 }))
+            setAlert(false)
             nameRef.current.value = "";
             ageRef.current.value = "";
             selectRef.current.value = "";
+        } else {
+            setAlert(true)
         }
     }
 
     return (
-        <div className="inputs">
-            <input className="name" ref={nameRef} placeholder="Name:" type="text" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
-            <input className="age" ref={ageRef} placeholder="Age:" type="number" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
+        <>
+            {alert && <div>All inputs must be filled!</div>}
+            <div className="inputs">
+                <input className="name" ref={nameRef} placeholder="Name:" type="text" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
+                <input className="age" ref={ageRef} placeholder="Age:" type="number" onKeyUp={e => e.key === 'Enter' && addNewEmployee()} />
 
-            <select ref={selectRef}>
-                <option value="">Choose city</option>
-                <option value="Vilnius">Vilnius</option>
-                <option value="Kaunas">Kaunas</option>
-                <option value="Klaipeda">Klaipeda</option>
-            </select>
+                <select ref={selectRef}>
+                    <option value="">Choose city</option>
+                    <option value="Vilnius">Vilnius</option>
+                    <option value="Kaunas">Kaunas</option>
+                    <option value="Klaipeda">Klaipeda</option>
+                </select>
 
-            <button onClick={addNewEmployee}>Add employee</button>
-
-        </div>
+                <button onClick={addNewEmployee}>Add employee</button>
+            </div>
+        </>
     )
 }
 
