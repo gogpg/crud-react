@@ -39,8 +39,8 @@ function TableBody() {
         return (
             <tr key={e.id}>
                 <td><input type='checkbox' onChange={event => check(e.id, event)} checked={e.check} /></td>
-                <td><input style={{ color: '343049', width: '100px' }} type='text' value={name} onChange={event => setName(event.target.value)} /></td>
-                <td><input style={{ color: '343049', width: '100px' }} type='number' value={age} onChange={event => setAge(event.target.value)} /></td>
+                <td><input style={{ color: '343049', width: '100px' }} type='text' onKeyUp={event => event.key === 'Enter' && dispachData(saveEdit_action(e.id, { name, age, city }))} value={name} onChange={event => setName(event.target.value)} /></td>
+                <td><input style={{ color: '343049', width: '100px' }} type='number' onKeyUp={event => event.key === 'Enter' && dispachData(saveEdit_action(e.id, { name, age, city }))} value={age} onChange={event => setAge(event.target.value)} /></td>
                 <td>
                     <select value={city} onChange={event => setCity(event.target.value)}>
                         <option value="">Choose city</option>
