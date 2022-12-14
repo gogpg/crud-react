@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { deleteEmployee_action, saveEdit_action } from "../actions/dataActions";
-import { cancelEdit_action, checkEmplyee_action, createPagesInLIst_action, focusEmployee_action } from "../actions/pagesListActions";
+import { cancelEdit_action, checkAll_action, checkEmplyee_action, createPagesInLIst_action, focusEmployee_action } from "../actions/pagesListActions";
 import DataContext from "./DataContext";
 
 function TableBody() {
 
     const { data, dispachData, setIsCheck, pagesList, page, dispachPagesList } = useContext(DataContext)   // is data context
+
+    useEffect(() => {
+        dispachPagesList(checkAll_action(page, false))
+    }, [page, dispachPagesList])
 
     useEffect(() => {
         dispachPagesList(createPagesInLIst_action(data))
