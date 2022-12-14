@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { deleteEmployee_action, saveEdit_action } from "../actions/dataActions";
 import { cancelEdit_action, checkAll_action, checkEmplyee_action, createPagesInLIst_action, focusEmployee_action } from "../actions/pagesListActions";
+import inputsValidation from "../functions/inputsValidation";
 import DataContext from "./DataContext";
 
 function TableBody() {
@@ -8,19 +9,19 @@ function TableBody() {
     const { data, dispachData, setIsCheck, pagesList, page, dispachPagesList } = useContext(DataContext)   // is data context
 
     useEffect(() => {
-        dispachPagesList(checkAll_action(page, false))
-    }, [page, dispachPagesList])
+        dispachPagesList(checkAll_action(page, false));
+    }, [page, dispachPagesList]);
 
     useEffect(() => {
-        dispachPagesList(createPagesInLIst_action(data))
-    }, [data, dispachPagesList])
+        dispachPagesList(createPagesInLIst_action(data));
+    }, [data, dispachPagesList]);
 
     const check = (id, e) => {
         const c = e.target.checked;
-        dispachPagesList(checkEmplyee_action(id, page, c))
+        dispachPagesList(checkEmplyee_action(id, page, c));
 
         if (!c) {
-            setIsCheck(c)
+            setIsCheck(c);
         }
     }
 
@@ -36,9 +37,18 @@ function TableBody() {
             setCity(focusEmployee.city);
         }
 
-    }, [page, pagesList])
+    }, [page, pagesList]);
 
-    function focusEmployee(e) {
+    const editSave = () => {
+        const isName = inputsValidation('name', isName);
+        const isAge = inputsValidation('name', isAge);
+
+        if (isName && isAge && city) {
+            dispachData(saveEdit_action(e.id, { name: isName, age: isAge, city }));
+        }
+    }
+
+    const focusEmployee = (e) => {
 
         return (
             <tr key={e.id}>
@@ -55,14 +65,14 @@ function TableBody() {
                 </td>
                 <td>
                     <button onClick={() => dispachPagesList(cancelEdit_action(page))}>Cancel</button>
-                    <button onClick={() => dispachData(saveEdit_action(e.id, { name, age, city }))}>Save</button>
+                    <button onClick={() => editSave(e)}>Save</button>
                 </td>
 
             </tr>
         )
     };
 
-    function blurEmployee(e) {
+    const blurEmployee = (e) => {
         return (
             <tr key={e.id}>
                 <td><input type='checkbox' onChange={event => check(e.id, event)} checked={e.check} /></td>
@@ -76,12 +86,12 @@ function TableBody() {
 
             </tr>
         )
-    }
+    };
 
     return (
         <tbody>
             {pagesList[page - 1]?.map(e => e.focus ? focusEmployee(e) : blurEmployee(e))}
         </tbody>
     )
-}
+};
 export default TableBody;

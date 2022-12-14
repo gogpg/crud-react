@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useContext, useRef } from "react";
 import { addNewEmployee_action } from "../actions/dataActions";
 import getId from "../functions/getId";
+import inputsValidation from "../functions/inputsValidation";
 import DataContext from "./DataContext";
 
 function NewData() {
@@ -15,15 +16,15 @@ function NewData() {
 
     const addNewEmployee = () => {
 
-        let name = nameRef.current.value;
-        let age = ageRef.current.value;
-        let city = selectRef.current.value;
+        const name = inputsValidation('name', nameRef.current.value);
+        const age = inputsValidation('age', ageRef.current.value);
+        const city = selectRef.current.value;
 
         if (name && age && city) {
             dispachData(
                 addNewEmployee_action({
                     id: getId(),
-                    name: name[0].toUpperCase() + name.slice(1).toLowerCase(),
+                    name,
                     age,
                     city,
                     deleted: false,
