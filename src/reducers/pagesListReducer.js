@@ -7,7 +7,7 @@ function pagesList_reducer(state, action) {   //puslapiavimas
     switch (action.type) {
         case createPagesInLIst_const:
             newState = [[]]    //nunuliname 
-            const pageSize = localStorage.getItem('pageSize') || 3;
+            const pageSize = localStorage.getItem('pageSizeLocal') || 3;
 
             if (action.payload) {
                 for (const employee of action.payload) {
