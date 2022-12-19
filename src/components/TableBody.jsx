@@ -39,9 +39,9 @@ function TableBody() {
 
     }, [page, pagesList]);
 
-    const editSave = () => {
-        const isName = inputsValidation('name', isName);
-        const isAge = inputsValidation('name', isAge);
+    const editSave = (e) => {
+        const isName = inputsValidation('name', name);
+        const isAge = inputsValidation('age', age);
 
         if (isName && isAge && city) {
             dispachData(saveEdit_action(e.id, { name: isName, age: isAge, city }));
